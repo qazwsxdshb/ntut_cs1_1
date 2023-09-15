@@ -1,0 +1,1 @@
+print('%.1f' %((lambda hi,kg:kg/hi**2)(float(input()),float(input()))))
