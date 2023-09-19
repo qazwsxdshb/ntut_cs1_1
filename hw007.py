@@ -7,12 +7,12 @@ for u in range(4):
     tmp,co=0,0
     for i in ans:
         if(co==5):
-            tmp=tmp+(i-x[u])*fee[u][co] if 0<(i-x[u])*fee[u][co] else tmp
+            tmp+=(i-x[u])*fee[u][co] if 0<=(i-x[u])*fee[u][co] else 0
         else:
             tmp+=i*fee[u][co]
         co+=1
-    a.append(tmp)
-    c.append(tmp+b[u])
-print(a)
-print(c)
-print(b[c.index(min(c))])
+    a.append(tmp if tmp>b[u] else b[u])
+    c.append(tmp)
+
+print(int(a[a.index(min(a))]))
+print(b[a.index(min(a))])
