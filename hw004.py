@@ -1,4 +1,3 @@
-import math
 hi=float(input())
 kg=float(input())
 bmi=int(float(kg/(hi*hi))*1000)

@@ -6,4 +6,4 @@ def getTriangle(ans: list):
     elif((ans[0]**2)==(ans[1]**2+ans[2]**2)):return "right triangle"
     elif((ans[0]**2)>(ans[1]**2+ans[2]**2)):return "obtuse triangle"
     elif((ans[0]**2)<(ans[1]**2+ans[2]**2)):return "acute triangle"
-print(getTriangle([int(input()) for i in range(3)]))
+print(getTriangle([int(input()) for _ in range(3)]))

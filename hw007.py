@@ -2,7 +2,7 @@ fee=[[0.08,0.139,0.135,1.128,1.483,250],[0.07,0.130,0.121,1.128,1.483,200],[0.06
 b=[183,383,983,1283]
 x=[1,3,5,0]
 ans=[int(input()) for _ in range(6)]
-a,c=[],[]
+a=[]
 for u in range(4):
     tmp,co=0,0
     for i in ans:
@@ -12,7 +12,6 @@ for u in range(4):
             tmp+=i*fee[u][co]
         co+=1
     a.append(tmp if tmp>b[u] else b[u])
-    c.append(tmp)
-
+    
 print(int(a[a.index(min(a))]))
 print(b[a.index(min(a))])

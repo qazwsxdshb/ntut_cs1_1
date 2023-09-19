@@ -4,7 +4,6 @@ c=int(input())
 def str_to_arr(ans1):
     tmp1=[]
     tmp=""
-    p=4
     for i in ans1:
         if(i!="+" and i!="-" and i!="i"):
             tmp+=i
