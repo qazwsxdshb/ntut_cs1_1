@@ -5,7 +5,7 @@ def calc(tmp: int,ans=0):
         if(tmp[i][0].isalpha()):
             ans+=0.5
         else:
-            ans+=int(tmp[i][0])
+            ans+=int(tmp[i])
     return ans
 
 if __name__=="__main__":
