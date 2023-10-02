@@ -2,8 +2,7 @@ price=[[2.1,3.02,4.39,4.97,5.63],[2.1,2.68,3.61,4.01,4.50]]
 ch=1
 if((lambda a:(True if (a>=7 and a<=9) else False))(int(input()))):
     ch=0
-# ???
-# def cal(price: list,pow: int):
+# def real_cal(price: list,pow: int):
 #     if(pow<=120):
 #         return price[0]*pow
 #     elif(pow<=330): 
