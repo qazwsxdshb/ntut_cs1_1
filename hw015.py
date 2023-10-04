@@ -1,9 +1,10 @@
 def BMI():
     hi,kg=[float(i) for i in input().split()]
-    bmi=int(float(kg/(hi*hi))*1000)
-    return cal(bmi)
+    bmi=float(kg/(hi*hi))
+    return bmi
 
 def cal(bmi):
+    bmi=bmi*1000
     if(bmi%10>5):
         return ("%.2f" %(((bmi+10)//10)/100))
     elif(bmi%10<5):
@@ -14,16 +15,18 @@ def cal(bmi):
         return ("%.2f" %((bmi//10)/100))
 
 if __name__=="__main__":
-    ans=[]
+    ans,ans2=[],[]
     for i in range(int(input())):
-        ans.append(BMI())
-    print(max(ans))
-    print(min(ans))
+        x=BMI()
+        ans.append(float(x))
+        ans2.append(float(cal(x)))
     ans=sorted(ans)
-    print(ans[len(ans)//2] if len(ans)%2==1 else cal((float(ans[len(ans)//2])+float(ans[(len(ans)//2)-1]))/2*1000))
+    print(cal(max(ans)),"\n",cal(min(ans)),sep="")
+    print(cal(ans[len(ans)//2]) if len(ans)%2==1 else cal(((float(ans[len(ans)//2])+float(ans[(len(ans)//2)-1]))/2)))
     tmp=0
-    for i in ans:
-        if(tmp<ans.count(i)):
+    ans2=sorted(ans2)
+    for i in ans2:
+        if(tmp<ans2.count(i)):
             a=i
-            tmp=ans.count(i)
+            tmp=ans2.count(i)
     print(a)
