@@ -3,9 +3,14 @@ b=int(input())
 if(a==1):
     for u in range(1,1+b):
         print(str(u)*(u)+"#"*(b-u))
-# elif(a==2):
-    # for u in range(b):
-        # print(("#"*(b+b-1))
+elif(a==2):
+    for u in range(b):
+        print("#"*(b*2-2-u*2),end="")
+        for i in range(1,2+u):
+            print(i,end="")
+        for i in range(u,0,-1):
+            print(i,end="")
+        print()
 elif(a==3):
     for i in range(1,b+1):
         tmp=""
@@ -16,8 +21,12 @@ elif(a==3):
         for u in range(i,0,-1):tmp+=str(u)
         print(tmp+"^"*(b-i))
 elif(a==4):
-    for i in range(1,b*2):
-        print("^"*(b-i),end="")
+    ans=''
+    for i in range(1,b+1):
+        ans+="^"*(b-i)
         for u in range(i,0,-1):
-            print(u%(b+1),end="")
-        print("^"*(b-i))
+            ans+=str(u%(b+1))
+        for u in range(1,i,1):
+            ans+=str(u+1%(b+1))
+        ans+="^"*(b-i)+"\n"
+    print(ans[:-1]+ans[:-(b*2)][::-1])
