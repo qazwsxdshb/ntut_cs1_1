@@ -7,8 +7,7 @@ def aaaa(mx):
         tmp1.append(tmp)
     return tmp1
 
-co=int(input())
-a=input()
+co,a=int(input()),input()
 ans,tmp=[],[]
 for i in range(1,1+co*co):
     tmp.append(str(i))
