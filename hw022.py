@@ -25,13 +25,10 @@ def Solution(Number,Color,tmp=0) -> int:
     if(tmp==2):return 3
     if(tmp==1):return 2
     return 1
-
 try:
-    ans={}
+    ans,kk=[],[i+u for i in "A 2 3 4 5 6 7 8 9 10 J Q K".split() for u in "S H D C".split()]
     co,name,tmp,tmp2=0,[],[],[]
-    xx=int(input())
-    if(1>=xx or xx>=6):int("A")
-    for _ in range(xx):
+    for _ in range(int(input())):
         x=(input().split())
         if(len(x)!=6):int("a")
         name.append(x.pop(0))
@@ -45,12 +42,17 @@ try:
         for i in x:
             if i[:2]=="10":Number.append("10")
             else:Number.append(i[0])
-        for i,u,z in zip(Color,x,Number):
-            if(z not in "A12345678910JQK" or i not in "SHDC"):int("a")
-            elif(len(u)!=2 and z!="10"):int("a")
-        if(co==0):ans.update({ii:Solution(Number,Color)})
+        for z in x:
+            if(z not in kk):int("a")
+        if(co==0):ans.append([Solution(Number,Color),ii])
     if(co==0):
-        for i in dict(sorted(ans.items(), key=lambda x:x[1],reverse=True)):
-            print(i,ans[i])
+        while ans:
+            tmp,addr=0,0
+            for i in range(len(ans)):
+                if(tmp<ans[i][0]):
+                    tmp=ans[i][0]
+                    addr=i
+            x=ans.pop(addr)
+            print(x[1],x[0])
     else:print("Duplicate deal")
 except:print("Error input")
