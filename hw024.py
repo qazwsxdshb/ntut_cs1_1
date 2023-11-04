@@ -5,6 +5,7 @@ def check(ans):
 
 co=int(input())
 money,point=list(map(int,input().split())),list(map(check,input().split()))
+
 for i in range(co):
     q=1
     while q:
@@ -25,16 +26,21 @@ def computer_show(point):
                 ans+=-1*money[i-1]
                 co+=tmp[i-1]
                 tmp[i-1]=0
-                print("Player",i," ",str(-1*money[i-1]),sep="")
-            else:
-                ans+=money[i-1]
-                print("Player",i," +",str(money[i-1]),sep="")
+            else:ans+=money[i-1]
         if(tim==1 or 10.5==min(point[1:])):break
         if(co!=len(point)-1 and 10.5!=min(point[1:])):
             point[0]+=check(input())
-        if(point[0]>min(point[1:])):
-            tim=1
+        if(point[0]>min(point[1:]) and (0!=min(point[1:]) or sorted(set(point[1:]))[1]<point[0])):tim=1
     return ans
 
 ans=computer_show(point)
-print("computer ", "+" if ans<0 else "",str(-1*ans),sep="")
+point[0] = 0 if point[0]>10.5 else point[0]
+
+for i in range(1,len(point)):
+    if(point[0]>=point[i] and point[i]!=10.5):
+        tmp[i-1]=0
+        print("Player",i," ",str(-1*money[i-1]),sep="")
+    else:
+        print("Player",i," +",str(money[i-1]),sep="")
+
+print("Computer ", "+" if ans<0 else "",str(-1*ans),sep="")
