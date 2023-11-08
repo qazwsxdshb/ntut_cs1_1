@@ -1,3 +1,0 @@
-D4 D5
-D6 S7
-C10 HQ D6 SJ
