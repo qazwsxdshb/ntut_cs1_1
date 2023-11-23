@@ -1,13 +1,13 @@
-pre=[2,3,5,7,11,13,17,19,23,29,31,37,41,43]
-ans,x=[],0
-start=input()
-end=input().split()
-string=input()
 def cal(ans):
     for i in ans:
         if(i not in "ATCG"):
             return 1
     return 0
+
+pre,ans,x=[2,3,5,7,11,13,17,19,23,29,31,37,41,43],[],0
+start=input()
+end=input().split()
+string=input()
 x=cal(start)
 if(x==0):
     x=cal(string)
