@@ -25,7 +25,7 @@ def search(key,stu,ans=[],cla={},like=0):
     return ans,cla,bye,ppp
 
 # part 1
-for i in sorted([uu for uu in set(xx)],key=lambda x:(int(x[:3]),int(x[3:]))):
+for i in sorted([uu for uu in set(xx)],key=lambda x:(int(x[3:]),int(x[:3]))):
     for u in sorted(list(set(list(uu[1][:-1] for uu in cla)))):
         tmp=search([i,u],stu,[],{},1)
         if(len(tmp[0])!=0):
