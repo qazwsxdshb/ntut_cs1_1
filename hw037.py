@@ -26,7 +26,7 @@ def search(key,stu,ans=[],cla={},like=0):
 
 # part 1
 for i in sorted([uu for uu in set(xx)],key=lambda x:(int(x[3:]),int(x[:3]))):
-    for u in sorted(list(set(list(uu[1][:-1] for uu in cla)))):
+    for u in sorted(list(set(list(int(uu[1][:-1]) for uu in cla)))):
         tmp=search([i,u],stu,[],{},1)
         if(len(tmp[0])!=0):
             print(i[3:],i[:3],u)
@@ -37,44 +37,23 @@ for i in sorted([uu for uu in set(xx)],key=lambda x:(int(x[3:]),int(x[:3]))):
                     ans.append([tmp1,int(co/p),zzz])
                     tmp1,co,p,zzz=z[0],z[1]*z[2],z[2],1
                 else:
-                    try:
-                        co+=z[1]*z[2]
-                        p+=z[2]
-                        zzz+=1
+                    try:co+=z[1]*z[2];p+=z[2];zzz+=1
                     except:None
             ans.append([tmp1,int(co/p),zzz])
-            ans=sorted(ans,key=lambda x:x[1],reverse=True)
-            for uu in range(3):print(*ans[uu][:-1],str(int(uu/(len(tmp[3]))*100)+1)+"%",str(int(int(tmp[3][ans[uu][0]])/ans[uu][-1]))+"%")            
+            ans=sorted(sorted(ans,key=lambda x:int(x[0])),key=lambda x:x[1],reverse=True)
+            for uu in range(3):
+                print(*ans[uu][:-1],str(int(100*uu/len(tmp[3]))+1)+"%",str(int(100*int(tmp[3][ans[uu][0]])/(int(tmp[3][ans[uu][0]])+ans[uu][-1])))+"%")
 
 # part 2
-for i in sorted(cla,key=lambda x:(int(x[0]),int(x[1]))):
+for i in sorted(cla,key=lambda x:(int(x[0]),int(x[1][:-1]))):
     print(i[0],i[1][:-1])
     tmp1=search([i[0],i[1]],stu,[],{},0)
-    tmp2=sorted(tmp1[0],key=lambda x:x[1],reverse=True)
-    print(tmp2[0][1],sum(u[1] for u in tmp2)//len(tmp2),tmp2[-1][1],str(int(tmp1[2]/(len(tmp2)+tmp1[2])*100))+"%")
-    for u in range(3):print(*tmp2[u][:-1],str(int(100*u/(len(tmp2)+tmp1[2]))+1)+"%")
+    tmp2=sorted(sorted(tmp1[0],key=lambda x:int(x[0])),key=lambda x:x[1],reverse=True)
+    print(tmp2[0][1],sum(u[1] for u in tmp2)//len(tmp2),tmp2[-1][1],str(int(tmp1[2]*100/(len(tmp1[0])+tmp1[2])))+"%")
+    for u in range(3 if len(tmp2)>=3 else len(tmp2)):print(*tmp2[u][:-1],str(int(100*u/(len(tmp1[0])+tmp1[2]))+1)+"%")
 
 # part 3
-key=input()
-tmp=search([key],stu,[],{},0)
+tmp=search([input()],stu,[],{},0)
 x=sorted(tmp[0],key=lambda x: x[1],reverse=True)[:2]
-
-y=[]
-for p in cla:
-    if(p[0]==key):
-        tttt=[]
-        for i in stu:
-            if(i.split()[0]==key and p[1][:-1]==i.split()[1][:-1]):
-                z=0
-                for ppp in range(len(tttt)):
-                    if(i.split()[2][3:6] in tttt[ppp][0]):
-                        tttt[ppp][1]+=1
-                        z+=1
-                if(z==0):tttt.append([i.split()[2][3:6],1])
-        y+=tttt
-y=sorted(y,key=lambda x: x[1],reverse=True)
-for i in y:
-    if(i[0] != y[0][0]):
-        tmp=i[0]
-        break
-print(x[0][0]," ",x[1][0]," ",y[0][0]," "+tmp if(len(y)>=2) else "",sep="")
+y=sorted(tmp[1].items(),key=lambda x:x[1],reverse=True)
+print(x[0][0]," ",x[1][0]," ",y[0][0]," "+y[1][0] if(len(y)>=2) else "",sep="")
