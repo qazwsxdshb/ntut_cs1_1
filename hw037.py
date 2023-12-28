@@ -55,7 +55,26 @@ for i in sorted(cla,key=lambda x:(int(x[0]),int(x[1]))):
     for u in range(3):print(*tmp2[u][:-1],str(int(100*u/(len(tmp2)+tmp1[2]))+1)+"%")
 
 # part 3
-tmp=search([input()],stu,[],{},0)
+key=input()
+tmp=search([key],stu,[],{},0)
 x=sorted(tmp[0],key=lambda x: x[1],reverse=True)[:2]
-y=sorted(tmp[1].items(),key=lambda x:x[1],reverse=True)
-print(x[0][0]," ",x[1][0]," ",y[0][0]," "+y[1][0] if(len(y)>=2) else "",sep="")
+
+y=[]
+for p in cla:
+    if(p[0]==key):
+        tttt=[]
+        for i in stu:
+            if(i.split()[0]==key and p[1][:-1]==i.split()[1][:-1]):
+                z=0
+                for ppp in range(len(tttt)):
+                    if(i.split()[2][3:6] in tttt[ppp][0]):
+                        tttt[ppp][1]+=1
+                        z+=1
+                if(z==0):tttt.append([i.split()[2][3:6],1])
+        y+=tttt
+y=sorted(y,key=lambda x: x[1],reverse=True)
+for i in y:
+    if(i[0] != y[0][0]):
+        tmp=i[0]
+        break
+print(x[0][0]," ",x[1][0]," ",y[0][0]," "+tmp if(len(y)>=2) else "",sep="")
